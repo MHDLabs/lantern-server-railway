@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark light">
+    <title>Lantern Server Manager — Cloudflare edition</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Lantern Manager home"><span class="brand-mark">L</span><span>Lantern <strong>Manager</strong></span></a>
+        <div class="status-pill"><span class="pulse"></span> Control plane</div>
+      </header>
+      <section class="hero">
+        <p class="eyebrow">CLOUDFLARE WORKERS EDITION</p>
+        <h1>Manage with clarity.<br><span>Never mistake it for a VPN.</span></h1>
+        <p class="lede">A small, secure control panel hosted on Cloudflare. The original Lantern proxy data plane cannot run on Workers, so this edition does not provide VPN connectivity or Lantern client configurations.</p>
+      </section>
+      <section class="warning" role="alert">
+        <span class="warning-icon">!</span>
+        <div><strong>Official Lantern protocol is not supported here</strong><p>Workers have no public inbound TCP/UDP listener. The original server relies on lantern-box to accept Shadowsocks and other proxy traffic. This panel never returns a fake connection config.</p></div>
+      </section>
+      <section class="panel" aria-labelledby="panel-title">
+        <div class="panel-heading"><div><p class="eyebrow">ADMIN ACCESS</p><h2 id="panel-title">One-time secure setup</h2></div><span id="state-badge" class="tag">Checking…</span></div>
+        <p id="panel-copy" class="muted">Configure a bootstrap secret in Cloudflare, then set an administrator password.</p>
+        <form id="setup-form" class="form hidden">
+          <label>Bootstrap secret<input name="bootstrap_secret" type="password" autocomplete="off" minlength="32" required><small>Set it as a Worker secret; it is not stored in the browser.</small></label>
+          <label>Administrator password<input name="password" type="password" autocomplete="new-password" minlength="14" maxlength="256" required><small>Use at least 14 characters.</small></label>
+          <button type="submit">Initialize administrator <span>→</span></button>
+        </form>
+        <form id="login-form" class="form hidden">
+          <label>Administrator password<input name="password" type="password" autocomplete="current-password" required maxlength="256"></label>
+          <button type="submit">Sign in <span>→</span></button>
+        </form>
+        <div id="admin-view" class="hidden">
+          <div class="control-grid">
+            <article><span class="metric-label">Proxy data plane</span><strong class="metric bad">Not available</strong><p>No TCP/UDP listeners or traffic engine.</p></article>
+            <article><span class="metric-label">Official client</span><strong class="metric bad">Not compatible</strong><p>No Lantern client provisioning is offered.</p></article>
+            <article><span class="metric-label">Control plane</span><strong class="metric good">Operational</strong><p>Admin authentication and audit history run on D1.</p></article>
+          </div>
+          <div class="actions"><button id="audit-button" class="secondary" type="button">Load recent audit events</button><button id="logout-button" class="secondary" type="button">Sign out</button></div>
+          <pre id="audit-output" class="audit hidden"></pre>
+        </div>
+        <p id="message" class="message" role="status" aria-live="polite"></p>
+      </section>
+      <footer><span>Lantern Server Manager · Workers edition</span><a href="/LICENSE">GPL-3.0</a></footer>
+    </main>
+  </body>
+</html>

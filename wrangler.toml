@@ -1,0 +1,22 @@
+name = "lantern-server-manager"
+main = "src/index.js"
+compatibility_date = "2026-10-16"
+workers_dev = true
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = true
+not_found_handling = "single-page-application"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "lantern-manager"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+migrations_dir = "migrations"
+
+[vars]
+APP_NAME = "Lantern Server Manager"
+SESSION_TTL_SECONDS = "43200"
+LOGIN_WINDOW_SECONDS = "900"
+LOGIN_MAX_ATTEMPTS = "10"

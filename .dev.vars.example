@@ -1,0 +1,2 @@
+# Copy to .dev.vars for local development; never commit .dev.vars.
+BOOTSTRAP_SECRET=replace-with-a-random-secret-of-at-least-32-characters

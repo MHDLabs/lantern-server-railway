@@ -1,0 +1,18 @@
+{
+  "name": "lantern-server-manager-workers",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A Cloudflare Workers administration panel for Lantern server access grants; not a proxy data plane.",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "test": "node --test test/app.test.js",
+    "build": "wrangler deploy --dry-run --outdir=dist",
+    "deploy": "wrangler deploy",
+    "db:migrate:local": "wrangler d1 migrations apply lantern-manager --local",
+    "db:migrate:remote": "wrangler d1 migrations apply lantern-manager --remote"
+  },
+  "devDependencies": {
+    "wrangler": "^4.151.1"
+  }
+}
